@@ -1,0 +1,135 @@
+
+{% extends "base.html" %}
+
+{% block head %}
+    {% block uhead %} {% endblock %}
+    <style>
+        .user-head-img{
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            height: 42px;
+            width: 42px;
+            padding-top: 6px;
+            border-radius: 21px;
+            text-align: center;
+            background: white;
+            cursor: pointer;
+            z-index: 1;
+            box-shadow: 6px 8px 12px rgba(0,0,0,.5);
+        }
+
+        div.popover{
+            width: 250px;
+        }
+
+        #signup-dlg{
+            position: absolute;
+            top: 100px;
+            width: 300px;
+            margin: auto;
+            left: 0px;
+            right: 0px;
+        }
+
+        #signup-dlg input{
+            border: none;
+            width: 222px
+        }
+
+        .user-signup-item{
+            border: 1px solid rgb(197, 225, 243);
+            padding: 10px 5px;
+            margin: 0px;
+            height: 40px;
+        }
+
+        .user-error-message{
+            margin-bottom: 10px;
+            font-size: 13px;
+            text-align: right;
+            padding-top: 5px;
+            color: red;
+        }
+
+        .user-signup-item.active{
+            border-color: rgb(55,166,233)
+        }
+
+        .user-signup-item.error{
+            border: 1px solid rgb(255, 0, 0);
+        }
+
+        .user-signup-label{
+            color: rgb(0, 0, 0)
+        }
+
+        .user-signup-label.active{
+            color: rgb(55,166,233)
+        }
+
+        .user-signup-cancel{
+            cursor: pointer;
+            visibility: hidden;
+            color: #009fff;
+        }
+
+        .user-btn{
+            margin: 0 auto;
+            width: 150px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            cursor: pointer
+        }
+
+        #signup-dlg img.captcha{
+            margin-top: -7px;
+        }
+
+        #signup-dlg #id_captcha_1{
+            width: 150px;
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% block ubody %}{% endblock %}
+    <div class="user-head-img" data-toggle="popover">
+        <img src="{{STATIC_URL}}icons/head_img.png" height="28px">
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {% block ujavascript %} {% endblock %}
+    <script type="text/javascript">
+        $(document).on('click', function (e) {
+            $('[data-toggle="popover"],[data-original-title]').each(function () {
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                    (($(this).popover('hide').data('bs.popover')||{}).inState||{}).click = false  // fix for BS 3.3.6
+                }
+
+            });
+        });
+        $(".user-head-img").popover({
+            title: "登陆建立您的地图档案",
+            content: "<div style='text-align:center'>" +
+                        "<a href='javascript:dialogs.login()' style='padding-right: 5px;'>登陆</a>" +
+                        "<a href='javascript:dialogs.signup()' style='padding-left: 5px; border-left: 1px solid;'>注册</a>" +
+                     "</div>",
+            placement: "bottom",
+            animation: false,
+            html: true
+        });
+
+
+        //setTimeout(function () {
+        $('.user-head-img').on('shown.bs.popover', function () {
+            var left_pos = $("div.popover").css("left");
+            left_pos = left_pos.slice(0, left_pos.length-2)-10;
+            $("div.popover").css("left", left_pos+"px");
+            $("div.popover>.arrow").css("left", "90.5%");
+        });
+    </script>
+{% endblock %}

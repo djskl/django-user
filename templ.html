@@ -1,0 +1,80 @@
+
+{% comment %} 登陆对话框 {% endcomment %}
+<script id="dlg-signin-tmpl" type="text/html">
+<div class="modal-dialog" id="signin-dlg" style="position: absolute;top: 100px;width: 300px; margin: auto; left: 0px; right: 0px;">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div name="input-group"
+                 style="border: 1px solid rgb(197, 225, 243); margin: 0px auto 15px; height: 40px; padding: 6px;">
+                <span class="glyphicon glyphicon-user" style="color: rgb(0, 0, 0);"></span>
+                <input type="text" name="username" id="username" placeholder="用户名/邮箱/手机号"
+                       style="border: none; width: 222px" data-placement="right" data-trigger="manual">
+                <span id="username_cancel" style="cursor: pointer; visibility: hidden; color: #009fff;">X</span>
+            </div>
+            <div class="error-message"></div>
+
+            <div name="input-group" style="border: 1px solid rgb(197, 225, 243); margin: 15px auto; padding: 6px;">
+                <span class="glyphicon glyphicon-lock" style="color: rgb(0, 0, 0);"></span>
+                <input type="password" name="password" id="password" placeholder="密码"
+                       style="border: none; width: 222px" data-placement="right" data-trigger="manual">
+                <span id="password_cancel" style="cursor: pointer; visibility: hidden; color: #009fff;">X</span>
+            </div>
+            <div class="error-message"></div>
+
+            <div class="div_lap" style="font-size: 15px; text-align: left">
+                <input type="checkbox" name="remember_me" value="1" class="pull-left">
+                <span>自动登录</span>
+                <span class="pull-right">
+                    <span>忘记密码？</span>
+                    <span style="color: #37A6E9; cursor: pointer" id="forget-pwd-btn">重置</span>
+                </span>
+            </div>
+            <div class="error-message"></div>
+
+            <div class="div_lap" style="margin-top: 15px; margin-bottom: 5px;">
+                <p id="login-btn" class="bg-primary" style="margin: 0 auto; width: 150px; height: 35px; line-height: 35px; text-align: center; cursor: pointer" onclick="javascript:loc_login()">登录</p>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+
+{% comment %} 注册对话框 {% endcomment %}
+<script id="dlg-signup-tmpl" type="text/html">
+<div class="modal-dialog" id="signup-dlg">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div name="input-group" class="user-signup-item">
+                <span class="glyphicon glyphicon-user user-signup-label"></span>
+                <input type="text" id="signup-username" placeholder="用户名">
+                <span class="user-signup-cancel">X</span>
+            </div>
+            <div class="user-error-message"></div>
+
+            <div name="input-group" class="user-signup-item">
+                <span class="glyphicon glyphicon-envelope user-signup-label"></span>
+                <input type="text" id="signup-email" placeholder="邮箱">
+                <span class="user-signup-cancel">X</span>
+            </div>
+            <div class="user-error-message"></div>
+
+            <div name="input-group" class="user-signup-item">
+                <span class="glyphicon glyphicon-lock user-signup-label"></span>
+                <input type="password" id="signup-password" placeholder="密码">
+                <span class="user-signup-cancel">X</span>
+            </div>
+            <div class="user-error-message"></div>
+
+            <div name="input-group" class="user-signup-item">
+                {{ form.captcha }}
+            </div>
+            <div class="user-error-message"></div>
+
+            <div style="margin-top: 15px; margin-bottom: 5px;">
+                <p id="signup-btn" class="bg-primary user-btn">注册</p>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
